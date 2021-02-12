@@ -2,7 +2,7 @@
 name: sync-573462273-scripts
 on:
   schedule:
-    - cron: '1 0,15 * * *'
+    - cron: '1 0,15/3 * * *'
   workflow_dispatch:
   watch:
     types: started
