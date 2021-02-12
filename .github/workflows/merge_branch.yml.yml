@@ -27,5 +27,14 @@ jobs:
         with:
           source_repo: "https://github.com/DJ-clamp/BaseSation.git"
           source_branch: "dev"
-          destination_branch: "main"
+          destination_branch: "master"
+          github_token: ${{ secrets.PAT }}
+          
+      - name: Merge main from master
+        uses: devmasx/merge-branch@v1.3.1
+        if: env.PAT
+        with:
+          type: now
+          from_branch: master
+          target_branch: main
           github_token: ${{ secrets.PAT }}
