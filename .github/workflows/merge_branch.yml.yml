@@ -25,7 +25,7 @@ jobs:
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/DJ-clamp/BaseSation.git"
+          source_repo: "https://github.com/DJ-clamp/BaseSation/tree/dev.git"
           source_branch: "dev"
           destination_branch: "dev"
           github_token: ${{ secrets.PAT }}
