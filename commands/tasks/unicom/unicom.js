@@ -451,9 +451,9 @@ var start = async (params) => {
     },
     taskOption
   );
-  
+
   //套餐看视频得积分
-//活动入口：主页-套餐页面-2个视频
+  //活动入口：主页-套餐页面-2个视频
   await scheduler.regTask(
     "taocan",
     async (request) => {
@@ -461,9 +461,6 @@ var start = async (params) => {
     },
     taskOption
   );
-
-  
-  
 };
 module.exports = {
   start,
