@@ -249,7 +249,10 @@ let scheduler = {
       //   console.log("👉 TryRun模式将清除CK操作");
       //   await delCookiesFile([command, scheduler.taskKey].join("_"));
       // }
-      // 初始化处理      
+      // 初始化处理
+      if (process.env.GITHUB_ACTIONS) {
+        return;
+      }
       let init_funcs = {};
       let init_funcs_result = {};
       for (let task of will_tasks) {
