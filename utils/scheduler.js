@@ -236,7 +236,8 @@ let scheduler = {
   },
   execTask: async (command, selectedTasks) => {
     console.log("🤨 开始执行任务");
-    /*if (process.env.GITHUB_ACTIONS) {
+    /*
+    if (process.env.GITHUB_ACTIONS) {
       return;
     }
     */
