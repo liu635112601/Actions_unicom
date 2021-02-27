@@ -7,34 +7,34 @@ let crypto = require("crypto");
 const gameEvents = require("./handlers/dailyEvent");
 const AES = require("./handlers/PAES");
 const { exit } = require("process");
-let dailyFingerqd = {
+let dailyFingerqd2 = {
   doTask: async (axios, options) => {
-    console.log("😒 猜拳拿奖...开始");
-    let request = new UnicomComponent(axios, options, "猜拳拿奖");
+    console.log("😒 猜拳2号-拿奖...开始");
+    let request = new UnicomComponent(axios, options, "猜拳2号拿奖");
     //登录平台
     let cookies = await request.login(
       "https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://m.jf.10010.com/jf-order/avoidLogin/forActive/fingerSignq&duanlianjieabc=tbKFo"
     );
     let times = await request.postFreeLoginGuess(
       "https://m.jf.10010.com/cms/yuech/unicom-integral-ui/yuech-Blindbox/fingerqd/index.html?jump=sign",
-      "Ac-yc0001,Ac-yc0002,Ac-yc0003",
+      "Ac-5506bb9b994e4e7e9d6054b87968bc85,Ac-2398174ed6774534b8bd4e4556b7b6ee,Ac-9964c061692d417a993577795298b461",
       cookies,
       (data) => {
         let temp = [
           {
-            activityId: "Ac-yc0002",
+            activityId: "Ac-9964c061692d417a993577795298b461",
             integral: 50,
             roundGame: null,
             activityName: "刘备",
           }, // 刘备
           {
-            activityId: "Ac-yc0001",
+            activityId: "Ac-2398174ed6774534b8bd4e4556b7b6ee",
             integral: 50,
             roundGame: null,
             activityName: "关羽",
           }, // 关羽
           {
-            activityId: "Ac-yc0003",
+            activityId: "Ac-5506bb9b994e4e7e9d6054b87968bc85",
             integral: 50,
             roundGame: null,
             activityName: "张飞",
@@ -76,7 +76,7 @@ let dailyFingerqd = {
         };
       }
     );
-    await dailyFingerqd.playGames(axios, options, cookies, times);
+    await dailyFingerqd2.playGames(axios, options, cookies, times);
   },
   playGames: async (
     axios,
@@ -91,8 +91,8 @@ let dailyFingerqd = {
       let { freeTimes, advertTimes, activityId, roundGame, integral } = item;
       do {
         console.log(
-          "已消耗机会",
-          1 + 3 - (freeTimes + advertTimes),
+          "一共有猜拳机会",
+          freeTimes + advertTimes,
           "剩余免费机会",
           freeTimes,
           "看视频广告机会",
@@ -224,10 +224,10 @@ let dailyFingerqd = {
             ) {
               console.log("🌈 提交积分翻倍");
               await sleep(30);
-              await dailyFingerqd.lookVideoDouble(axios, {
+              await dailyFingerqd2.lookVideoDouble(axios, {
                 ...options,
               });
-              await dailyFingerqd.lookVideoDoubleResult(axios, {
+              await dailyFingerqd2.lookVideoDoubleResult(axios, {
                 ...options,
                 Authorization,
                 activityId: activityId,
@@ -241,9 +241,9 @@ let dailyFingerqd = {
   },
   lookVideoDouble: async (axios, options) => {
     let params = {
-      arguments1: "AC20200611152252",
+      arguments1: "",
       arguments2: "GGPD",
-      arguments3: "627292f1243148159c58fd58917c3e67",
+      arguments3: "",
       arguments4: new Date().getTime(),
       arguments6: "517050707",
       netWay: "Wifi",
@@ -266,9 +266,9 @@ let dailyFingerqd = {
     }
 
     params = {
-      arguments1: "AC20200611152252", // acid
+      arguments1: "", // acid
       arguments2: "GGPD", // yhChannel
-      arguments3: "627292f1243148159c58fd58917c3e67", // yhTaskId menuId
+      arguments3: "", // yhTaskId menuId
       arguments4: new Date().getTime(), // time
       arguments6: "",
       arguments7: "",
@@ -295,4 +295,4 @@ let dailyFingerqd = {
   lookVideoDoubleResult: gameEvents.lookVideoDoubleResult("猜拳拿奖"),
 };
 
-module.exports = dailyFingerqd;
+module.exports = dailyFingerqd2;
