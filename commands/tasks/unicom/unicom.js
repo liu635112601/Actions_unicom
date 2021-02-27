@@ -180,6 +180,7 @@ var start = async (params) => {
       await require("./dailyVideoFreeGoods").doTask(request, options);
     },
     {
+      ...taskOption,
       isCircle: true,
       startTime: 10 * 3600,
       intervalTime: 4 * 3600,
@@ -200,6 +201,15 @@ var start = async (params) => {
     "jflottery",
     async (request) => {
       await require("./jflottery").doTask(request, options);
+    },
+    taskOption
+  );
+
+  ///666积分补全。。。。
+  await scheduler.regTask(
+    "jflotteryad",
+    async (request) => {
+      await require("./jflotteryad.js").doTask(request, options);
     },
     taskOption
   );
@@ -469,6 +479,28 @@ var start = async (params) => {
       await require("./dailyTurncards.js").doTask(request, options);
     },
     taskOption
+  );
+  
+    // 首页-签到有礼-饿了么红包
+  await scheduler.regTask(
+    "fapiao",
+    async (request) => {
+      await require("./fapiao.js").doTask(request, options);
+    },
+    taskOption
+  );
+
+  //积分查询
+  await scheduler.regTask(
+    "fetchCoins",
+    async (request) => {
+      await require("./fetchCoins.js").doTask(request, options);
+    },
+    {
+      ...taskOption,
+      startTime: 21 * 3600,
+      ignoreRelay: true,
+    }
   );
 };
 module.exports = {
